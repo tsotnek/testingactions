@@ -13,9 +13,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run lintscript
-        run: npm lint
+        run: npm run lint
   test:
-    # needs: lintscript
+    needs: lintscript
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -26,10 +26,10 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm ci
-      - name: Run lintscript
+      - name: Run tests
         run: npm test
   build:
-    # needs: test
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -40,5 +40,5 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm ci
-      - name: Run lintscript
-        run: npm build
+      - name: Build project
+        run: npm run build
